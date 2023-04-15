@@ -1,41 +1,35 @@
 package accounts;
 
-import java.util.HashMap;
-import java.util.Map;
+import dbService.DBException;
+import dbService.DBService;
+import dbService.dataSets.UsersDataSet;
 
-/**
- * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
- */
 public class AccountService {
-    private final Map<String, UserProfile> loginToProfile;
-    private final Map<String, UserProfile> sessionIdToProfile;
 
     public AccountService() {
-        loginToProfile = new HashMap<>();
-        sessionIdToProfile = new HashMap<>();
     }
 
-    public void addNewUser(UserProfile userProfile) {
-        loginToProfile.put(userProfile.getLogin(), userProfile);
-    }
+    public void addNewUser(UserProfile userProfile, DBService dbService) {
+        try {
 
-    public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
-    }
+            long userId = dbService.addUser(userProfile.getLogin(), userProfile.getPass());
+            System.out.println("Added user id: " + userId);
 
-    public UserProfile getUserBySessionId(String sessionId) {
-        return sessionIdToProfile.get(sessionId);
-    }
+            UsersDataSet dataSet = dbService.getUser(userId);
+            System.out.println("User data set: " + dataSet);
 
-    public void addSession(String sessionId, UserProfile userProfile) {
-        sessionIdToProfile.put(sessionId, userProfile);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
-
-    public void deleteSession(String sessionId) {
-        sessionIdToProfile.remove(sessionId);
+    //Добавил проверку на NULL
+    public UserProfile getUserByLogin(String login, DBService dbService) throws DBException {
+        long id = dbService.getUserID(login);
+        UsersDataSet usersDataSet = dbService.getUser(id);
+        if (usersDataSet == null) {
+            return null;
+        }
+        UserProfile userProfile = new UserProfile(usersDataSet.getName(), usersDataSet.getPassword());
+        return userProfile;
     }
 }
