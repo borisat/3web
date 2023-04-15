@@ -22,21 +22,6 @@ public class SignInServlet extends HttpServlet {
         this.dbService = dbService;
     }
 
-    //get logged user profile
-//    public void doGet(HttpServletRequest request,
-//                      HttpServletResponse response) throws ServletException, IOException {
-//        String sessionId = request.getSession().getId();
-//        UserProfile profile = accountService.getUserBySessionId(sessionId);
-//        if (profile == null) {
-//            response.setContentType("text/html;charset=utf-8");
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//        } else {
-//
-//            response.setContentType("text/html;charset=utf-8");
-//            response.getWriter().println("SIGNIN SOM TEXT");
-//            response.setStatus(HttpServletResponse.SC_OK);
-//        }
-//    }
 
     //sign in
     public void doPost(HttpServletRequest request,
@@ -68,20 +53,4 @@ public class SignInServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    //sign out
-//    public void doDelete(HttpServletRequest request,
-//                         HttpServletResponse response) throws ServletException, IOException {
-//        String sessionId = request.getSession().getId();
-//        UserProfile profile = accountService.getUserBySessionId(sessionId);
-//        if (profile == null) {
-//            response.setContentType("text/html;charset=utf-8");
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//        } else {
-//            accountService.deleteSession(sessionId);
-//            response.setContentType("text/html;charset=utf-8");
-//            response.getWriter().println("Goodbye!");
-//            response.setStatus(HttpServletResponse.SC_OK);
-//        }
-//
-//    }
 }
