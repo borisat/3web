@@ -15,23 +15,39 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * @author v.chibrikov
- *         <p>
- *         Пример кода для курса на https://stepic.org/
- *         <p>
- *         Описание курса и лицензия: https://github.com/vitaly-chibrikov/stepic_java_webserver
+ * Настраивает соединение с БД MY SQL, вызывает методы DAO для работы с БД
  */
 public class DBService {
+
+    /**
+     * Параметр логирования
+     */
     private static final String hibernate_show_sql = "true";
+
+    /**
+     * Параметр действий с БД при старте
+     */
     private static final String hibernate_hbm2ddl_auto = "update";
 
+    /**
+     * Поле содержащее один обьект SessionFactory
+     */
     private final SessionFactory sessionFactory;
 
+
+    /**
+     * Конструктор устанавливающий соединение с БД
+     */
     public DBService() {
         Configuration configuration = getMySqlConfiguration();
         sessionFactory = createSessionFactory(configuration);
     }
 
+
+    /**
+     * Метод устанавливает параметры соединения с БД
+     * @return Возвразает ностроейки соединения с БД
+     */
     @SuppressWarnings("UnusedDeclaration")
     private Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
@@ -47,6 +63,12 @@ public class DBService {
         return configuration;
     }
 
+
+    /**
+     * Метод получает пользователья из БД по ID
+     * @param id - Уникальный идентификатор пользователья в БД
+     * @return возвращает пользователя
+     */
     public UsersDataSet getUser(long id) throws DBException {
         try {
             Session session = sessionFactory.openSession();
@@ -59,6 +81,11 @@ public class DBService {
         }
     }
 
+    /**
+     * Метод получает ID пользователья из БД по имени
+     * @param name - username
+     * @return возвращает ID
+     */
     public long getUserID(String name) throws DBException {
         try {
             Session session = sessionFactory.openSession();
@@ -71,7 +98,12 @@ public class DBService {
         }
     }
 
-
+    /**
+     * Метод побавляет пользователея в БД
+     * @param name - username
+     * @param password - Пароль пользователя
+     * @return  возвращает ID нового пользователя
+     */
     public long addUser(String name, String password) throws DBException {
         try {
             Session session = sessionFactory.openSession();
@@ -86,6 +118,10 @@ public class DBService {
         }
     }
 
+
+    /**
+     * Метод выводит информацию о соединении с БД
+     */
     public void printConnectInfo() {
         try {
             SessionFactoryImpl sessionFactoryImpl = (SessionFactoryImpl) sessionFactory;
@@ -99,6 +135,10 @@ public class DBService {
         }
     }
 
+    /**
+     * Метод устанавливает соединение с БД
+     * @param configuration - настройки соединения с БД
+     */
     private static SessionFactory createSessionFactory(Configuration configuration) {
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
         builder.applySettings(configuration.getProperties());
