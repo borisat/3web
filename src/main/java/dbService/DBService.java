@@ -65,8 +65,8 @@ public class DBService {
 
 
     /**
-     * Метод получает пользователя из БД по ID
-     * @param id - Уникальный идентификатор пользователя в БД
+     * Метод получает пользователя  из БД по ID
+     * @param id - Уникальный идентификатор пользователя  в БД
      * @return возвращает пользователя
      */
     public UsersDataSet getUser(long id) throws DBException {
@@ -82,8 +82,8 @@ public class DBService {
     }
 
     /**
-     * Метод получает ID пользователя из БД по имени
-     * @param name - username
+     * Метод получает ID пользователя  из БД по имени
+     * @param name - Имя пользователя
      * @return возвращает ID
      */
     public long getUserID(String name) throws DBException {
@@ -99,7 +99,7 @@ public class DBService {
     }
 
     /**
-     * Метод побавляет пользователя в БД
+     * Метод побавляет пользователя  в БД
      * @param name - Имя пользователя
      * @param password - Пароль пользователя
      * @return  возвращает ID нового пользователя
