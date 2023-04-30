@@ -45,7 +45,7 @@ public class DBService {
 
 
     /**
-     * Метод устанавливает параметры соединения с БД
+     * Установка параметров соединения с БД
      * @return Возвразает ностроейки соединения с БД
      */
     @SuppressWarnings("UnusedDeclaration")
@@ -65,7 +65,7 @@ public class DBService {
 
 
     /**
-     * Метод получает пользователя  из БД по ID
+     * Полуение пользователя  из БД по ID
      * @param id - Уникальный идентификатор пользователя  в БД
      * @return возвращает пользователя
      */
@@ -82,7 +82,7 @@ public class DBService {
     }
 
     /**
-     * Метод получает ID пользователя  из БД по имени
+     * Полуение ID пользователя  из БД по имени
      * @param name - Имя пользователя
      * @return возвращает ID
      */
@@ -99,7 +99,7 @@ public class DBService {
     }
 
     /**
-     * Метод побавляет пользователя  в БД
+     * Добавление пользователя  в БД
      * @param name - Имя пользователя
      * @param password - Пароль пользователя
      * @return  возвращает ID нового пользователя
@@ -120,7 +120,7 @@ public class DBService {
 
 
     /**
-     * Метод выводит информацию о соединении с БД
+     * Вывод информации о соединении с БД
      */
     public void printConnectInfo() {
         try {
@@ -136,7 +136,7 @@ public class DBService {
     }
 
     /**
-     * Метод устанавливает соединение с БД
+     * Установка соединения с БД
      * @param configuration - настройки соединения с БД
      */
     private static SessionFactory createSessionFactory(Configuration configuration) {
