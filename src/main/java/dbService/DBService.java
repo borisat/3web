@@ -46,7 +46,7 @@ public class DBService {
 
     /**
      * Установка параметров соединения с БД
-     * @return Возвразает ностроейки соединения с БД
+     * @return Возвращает ностройки соединения с БД
      */
     @SuppressWarnings("UnusedDeclaration")
     private Configuration getMySqlConfiguration() {
